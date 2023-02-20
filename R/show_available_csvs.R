@@ -1,4 +1,6 @@
 #' List CSVs available to download from the StatsNZ website
+#' @description
+#' `r lifecycle::badge("experimental")`
 #' @param refresh Logical; `TRUE` by default. If `TRUE`, a current list of
 #' available CSVs will be scraped from the StatsNZ website. If `FALSE`, a
 #' cached internal list of CSVs will be returned.
@@ -56,6 +58,14 @@ scrape_available_csvs <- function() {
                   ext = "DocumentExtension") %>%
     dplyr::mutate(url = paste0("https://www.stats.govt.nz", .data$url),
                   name = tolower(.data$name))
+}
+
+#' Show the 'subnames' within a StatsNZ zipped file
+#' @description
+#' `r lifecycle::badge("experimental")`
+
+show_available_subnames <- function(name) {
+
 }
 
 

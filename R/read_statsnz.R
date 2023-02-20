@@ -1,6 +1,7 @@
 #' Read CSVs from StatsNZ
 #'
 #' @description
+#' `r lifecycle::badge("experimental")`
 #' This function downloads and imports CSVs from StatsNZ
 #' @param name A name of a StatsNZ CSV or ZIP, or a unique fragment thereof
 #' @param subname Used when `name` refers to a ZIP. `subname` is the name,
@@ -16,7 +17,8 @@
 
 read_statsnz <- function(name,
                          subname = NULL,
-                         path = tempdir()) {
+                         path = tempdir(),
+                         check_local = TRUE) {
 
   stopifnot(length(name) == 1)
 
@@ -28,7 +30,9 @@ read_statsnz <- function(name,
 
   ext <- tools::file_ext(filename)
 
-  utils::download.file(url, filename)
+  if (isFALSE(check_local) || !file.exists(filename)) {
+    utils::download.file(url, filename)
+  }
 
   if (ext == "zip") {
 

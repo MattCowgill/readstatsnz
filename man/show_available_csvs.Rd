@@ -18,7 +18,7 @@ and \code{ext} (file extension) for a range of CSVs available to download from
 StatsNZ.
 }
 \description{
-List CSVs available to download from the StatsNZ website
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \examples{
 show_available_csvs()

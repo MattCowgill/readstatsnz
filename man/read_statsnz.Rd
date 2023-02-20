@@ -15,6 +15,7 @@ or a unique fragment thereof, of a file within the ZIP.}
 \item{path}{Directory in which to save downloaded file(s)}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 This function downloads and imports CSVs from StatsNZ
 }
 \examples{
