@@ -7,10 +7,11 @@
 #' or a unique fragment thereof, of a file within the ZIP.
 #' @param path Directory in which to save downloaded file(s)
 #' @examples
-#'
+#' \dontrun{
 #' read_statsnz("national-labour-force-projections")
 #'
 #' read_statsnz("labour-market-statistics", subname = "lci")
+#' }
 #' @export
 
 read_statsnz <- function(name,
@@ -45,7 +46,7 @@ read_statsnz <- function(name,
                  junkpaths = TRUE,
                  exdir = unzip_dir)
 
-    post_unzip_files <- list.files(path,
+    post_unzip_files <- list.files(unzip_dir,
                                    pattern = "\\.csv",
                                          full.names = TRUE,
                                          include.dirs = FALSE)

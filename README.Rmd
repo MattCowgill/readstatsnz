@@ -20,7 +20,9 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/MattCowgill/readstatsnz/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MattCowgill/readstatsnz/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of readstatsnz is to ...
+The goal of {readstatsnz} is to make it easy to download and import data from StatsNZ into R.
+
+At the moment, the package enables easy access to [the CSVs listed on this page](https://www.stats.govt.nz/large-datasets/csv-files-for-download).
 
 ## Installation
 
@@ -33,9 +35,24 @@ devtools::install_github("MattCowgill/readstatsnz")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
+Some StatsNZ files are simple CSVs:
 ```{r example}
-# library(readstatsnz)
-## basic example code
+library(readstatsnz)
+
+read_statsnz("national-labour-force-projections")
+
+
+```
+
+Some are ZIP files, in which case you need to supply a `subname` argument:
+```{r example-2}
+read_statsnz("labour-market-statistics", subname = "lci")
+
+```
+
+
+To see the available files, use:
+
+```{r}
+show_available_csvs()
 ```

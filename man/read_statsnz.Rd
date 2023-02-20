@@ -18,8 +18,9 @@ or a unique fragment thereof, of a file within the ZIP.}
 This function downloads and imports CSVs from StatsNZ
 }
 \examples{
-
+\dontrun{
 read_statsnz("national-labour-force-projections")
 
 read_statsnz("labour-market-statistics", subname = "lci")
+}
 }

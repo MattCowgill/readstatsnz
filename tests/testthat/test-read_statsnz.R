@@ -6,6 +6,7 @@ test_that("read_statsnz() works", {
 
   check_df <- function(df) {
     expect_s3_class(df, "tbl_df")
+    expect_gt(nrow(df), 0)
   }
 
   check_df(read_statsnz("national-labour-force-projections"))
