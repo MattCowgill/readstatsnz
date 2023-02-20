@@ -79,7 +79,7 @@ read_statsnz <- function(name,
 
   if ("data_value" %in% colnames(out)) {
     out <- out %>%
-      rename(value = "data_value")
+      dplyr::rename(value = "data_value")
   }
 
   return(out)
