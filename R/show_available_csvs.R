@@ -60,13 +60,4 @@ scrape_available_csvs <- function() {
                   name = tolower(.data$name))
 }
 
-#' Show the 'subnames' within a StatsNZ zipped file
-#' @description
-#' `r lifecycle::badge("experimental")`
-
-show_available_subnames <- function(name) {
-
-}
-
-
 

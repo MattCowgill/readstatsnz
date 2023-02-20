@@ -4,7 +4,7 @@
 \alias{read_statsnz}
 \title{Read CSVs from StatsNZ}
 \usage{
-read_statsnz(name, subname = NULL, path = tempdir())
+read_statsnz(name, subname = NULL, path = tempdir(), check_local = TRUE)
 }
 \arguments{
 \item{name}{A name of a StatsNZ CSV or ZIP, or a unique fragment thereof}
@@ -13,6 +13,12 @@ read_statsnz(name, subname = NULL, path = tempdir())
 or a unique fragment thereof, of a file within the ZIP.}
 
 \item{path}{Directory in which to save downloaded file(s)}
+
+\item{check_local}{Logical; \code{TRUE} by default. If \code{TRUE}, \code{read_statsnz()}
+will look in \code{path} for a file with the same filename as the one you've
+requested. If it exists, it will be loaded. If not, the file will be
+downloaded from StatsNZ. If \code{FALSE}, the file will always be
+downloaded from StatsNZ.}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}

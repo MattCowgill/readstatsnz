@@ -44,10 +44,6 @@ read_statsnz <- function(name,
     unzip_dir <- file.path(tempdir(),
                            tools::file_path_sans_ext(basename(filename)))
 
-    # if (fs::dir_exists(unzip_dir)) {
-    #   fs::dir_delete(unzip_dir)
-    # }
-
     if (!fs::dir_exists(unzip_dir)) {
       fs::dir_create(unzip_dir)
     }
@@ -82,11 +78,21 @@ read_statsnz <- function(name,
     janitor::clean_names()
 }
 
+#' @noRd
+#' @keywords internal
+#' Given a `name`, return the URL(s) corresponding to that name
+#' @param name A (unique fragment of) a release name. For possible release
+#' names, see the `name` column of the dataframe returned by
+#' `show_available_csvs()`.
+#' @return A character vector of URL(s) corresponding to the name provided
+#' @examples
+#' get_url("economic-survey-of-manufacturing")
 get_url <- function(name) {
   avail <- show_available_csvs()
   avail %>%
     dplyr::filter(grepl(.env$name, .data$name)) %>%
     dplyr::pull(.data$url)
 }
+
 
 
