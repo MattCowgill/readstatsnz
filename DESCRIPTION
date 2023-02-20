@@ -14,6 +14,7 @@ Imports:
     httr,
     jsonlite,
     purrr,
+    readr,
     rlang,
     rvest
 Depends: 

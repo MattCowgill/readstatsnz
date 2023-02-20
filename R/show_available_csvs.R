@@ -54,7 +54,8 @@ scrape_available_csvs <- function() {
                   name = "Name",
                   url = "DocumentLink",
                   ext = "DocumentExtension") %>%
-    dplyr::mutate(url = paste0("https://www.stats.govt.nz", .data$url))
+    dplyr::mutate(url = paste0("https://www.stats.govt.nz", .data$url),
+                  name = tolower(.data$name))
 }
 
 
