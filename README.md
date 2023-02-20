@@ -13,8 +13,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 The goal of {readstatsnz} is to make it easy to download and import data
 from StatsNZ into R.
 
-At the moment, the package enables easy access to [the CSVs listed on
-this
+The package enables easy access to [the CSVs listed on this
 page](https://www.stats.govt.nz/large-datasets/csv-files-for-download).
 
 ## Installation
@@ -29,7 +28,10 @@ devtools::install_github("MattCowgill/readstatsnz")
 
 ## Example
 
-Some StatsNZ files are simple CSVs:
+The package enables easy access to [the CSVs listed on this
+page](https://www.stats.govt.nz/large-datasets/csv-files-for-download).
+
+Some StatsNZ files are simple CSVs, which can be loaded like this:
 
 ``` r
 library(readstatsnz)
@@ -93,3 +95,22 @@ show_available_csvs()
 #> 10 Geographic units, by industry and statistical area: 2000–2… csv-… http… zip  
 #> # … with 90 more rows
 ```
+
+## Lifecycle
+
+This package is
+[experimental](https://lifecycle.r-lib.org/articles/stages.html#experimental).
+The StatsNZ website may, at any time, change in such a way that the
+package stops working. The package is in an early stage of development,
+so functions (including function names and/or arguments) may change.
+
+## Roadmap
+
+In future, this package could house functions to query the StatsNZ API.
+I’d welcome contributions. Please open an issue before commencing.
+
+## Disclaimer
+
+This package is provided as-is. All data is provided under the terms set
+out on the StatsNZ website. This package is not in any way affiliated
+with or endorsed by StatsNZ.
