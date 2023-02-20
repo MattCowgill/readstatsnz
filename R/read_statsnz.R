@@ -72,10 +72,17 @@ read_statsnz <- function(name,
 
   stopifnot(length(filename) == 1)
 
-  readr::read_csv(filename,
+  out <- readr::read_csv(filename,
                   show_col_types = FALSE,
                   lazy = FALSE) %>%
     janitor::clean_names()
+
+  if ("data_value" %in% colnames(out)) {
+    out <- out %>%
+      rename(value = "data_value")
+  }
+
+  return(out)
 }
 
 #' @noRd
