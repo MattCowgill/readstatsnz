@@ -7,6 +7,11 @@
 #' @param subname Used when `name` refers to a ZIP. `subname` is the name,
 #' or a unique fragment thereof, of a file within the ZIP.
 #' @param path Directory in which to save downloaded file(s)
+#' @param check_local Logical; `TRUE` by default. If `TRUE`, `read_statsnz()`
+#' will look in `path` for a file with the same filename as the one you've
+#' requested. If it exists, it will be loaded. If not, the file will be
+#' downloaded from StatsNZ. If `FALSE`, the file will always be
+#' downloaded from StatsNZ.
 #' @examples
 #' \dontrun{
 #' read_statsnz("national-labour-force-projections")
@@ -39,11 +44,13 @@ read_statsnz <- function(name,
     unzip_dir <- file.path(tempdir(),
                            tools::file_path_sans_ext(basename(filename)))
 
-    if (fs::dir_exists(unzip_dir)) {
-      fs::dir_delete(unzip_dir)
-    }
+    # if (fs::dir_exists(unzip_dir)) {
+    #   fs::dir_delete(unzip_dir)
+    # }
 
-    fs::dir_create(unzip_dir)
+    if (!fs::dir_exists(unzip_dir)) {
+      fs::dir_create(unzip_dir)
+    }
 
     utils::unzip(filename,
                  overwrite = TRUE,
@@ -67,10 +74,12 @@ read_statsnz <- function(name,
 
   }
 
+  stopifnot(length(filename) == 1)
 
   readr::read_csv(filename,
                   show_col_types = FALSE,
-                  lazy = FALSE)
+                  lazy = FALSE) %>%
+    janitor::clean_names()
 }
 
 get_url <- function(name) {

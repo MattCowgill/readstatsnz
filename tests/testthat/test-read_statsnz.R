@@ -11,5 +11,15 @@ test_that("read_statsnz() works", {
 
   check_df(read_statsnz("national-labour-force-projections"))
   expect_error(read_statsnz("labour-market-statistics"))
-  check_df(read_statsnz("labour-market-statistics", "lci"))
+
+  df_remote <- read_statsnz("labour-market-statistics", "lci",
+                        check_local = FALSE)
+
+  df_local <- read_statsnz("labour-market-statistics", "lci",
+                           check_local = TRUE)
+
+  check_df(df_remote)
+  check_df(df_local)
+  expect_identical(df_remote, df_local)
+
 })
