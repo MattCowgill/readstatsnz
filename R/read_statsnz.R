@@ -41,7 +41,7 @@ read_statsnz <- function(name,
 
   if (ext == "zip") {
 
-    unzip_dir <- file.path(tempdir(),
+    unzip_dir <- file.path(path,
                            tools::file_path_sans_ext(basename(filename)))
 
     if (!fs::dir_exists(unzip_dir)) {
