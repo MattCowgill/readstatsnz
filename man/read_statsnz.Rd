@@ -9,8 +9,9 @@ read_statsnz(name, subname = NULL, path = tempdir(), check_local = TRUE)
 \arguments{
 \item{name}{A name of a StatsNZ CSV or ZIP, or a unique fragment thereof}
 
-\item{subname}{Used when \code{name} refers to a ZIP. \code{subname} is the name,
-or a unique fragment thereof, of a file within the ZIP.}
+\item{subname}{Used when \code{name} refers to a ZIP that contains more than one
+CSV. \code{subname} is the name,
+or a unique fragment thereof, of a CSV file within the ZIP.}
 
 \item{path}{Directory in which to save downloaded file(s)}
 

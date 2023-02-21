@@ -4,8 +4,9 @@
 #' `r lifecycle::badge("experimental")`
 #' This function downloads and imports CSVs from StatsNZ
 #' @param name A name of a StatsNZ CSV or ZIP, or a unique fragment thereof
-#' @param subname Used when `name` refers to a ZIP. `subname` is the name,
-#' or a unique fragment thereof, of a file within the ZIP.
+#' @param subname Used when `name` refers to a ZIP that contains more than one
+#' CSV. `subname` is the name,
+#' or a unique fragment thereof, of a CSV file within the ZIP.
 #' @param path Directory in which to save downloaded file(s)
 #' @param check_local Logical; `TRUE` by default. If `TRUE`, `read_statsnz()`
 #' will look in `path` for a file with the same filename as the one you've
@@ -30,6 +31,10 @@ read_statsnz <- function(name,
   url <- get_url(name)
 
   stopifnot(length(url) == 1)
+
+  if (!fs::dir_exists(path)) {
+    fs::dir_create(path)
+  }
 
   filename <- file.path(path, tolower(basename(url)))
 
@@ -58,14 +63,26 @@ read_statsnz <- function(name,
                                          full.names = TRUE,
                                          include.dirs = FALSE)
 
-    if (is.null(subname)) {
+    subname_required <- if (length(post_unzip_files) > 1) {
+      TRUE
+    } else {
+      FALSE
+    }
+
+    if (subname_required && is.null(subname)) {
       stop(name, " is a .zip file.\nSpecify `subname` to choose which file to ",
            "load.\nOptions are: ",
            paste0(tools::file_path_sans_ext(basename(post_unzip_files)),
                   collapse = "; "), ".")
-    } else {
+    }
+
+    if (subname_required && !is.null(subname)) {
       filename <- post_unzip_files[grepl(subname, post_unzip_files,
                                          ignore.case = TRUE)]
+    }
+
+    if (!subname_required) {
+      filename <- post_unzip_files
     }
 
   }

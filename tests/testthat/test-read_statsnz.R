@@ -22,4 +22,12 @@ test_that("read_statsnz() works", {
   check_df(df_local)
   expect_identical(df_remote, df_local)
 
+
+  random_dir <- file.path(tempdir(),
+                          paste0(sample(letters, 10), collapse = ""))
+
+  on.exit(unlink(random_dir))
+
+  check_df(read_statsnz("business-financial-data", check_local = F,
+                        path = random_dir))
 })
